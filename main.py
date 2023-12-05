@@ -5,10 +5,19 @@
 """
 
 #returns dictionary
-#def readCSV(file_name):
+def readCSV(file_name):
+    
+    
+#returns sorted list highest to lowest
+def assessCSV():
     
 
-
+#returns a stock rating out of 10
+def assess_input():
+    
+    
+#return the point value of one stock out of 500 pts, 100 per cat.
+def assess_stocks()
 
 if __name__ == "__main__":
     
@@ -28,6 +37,7 @@ if __name__ == "__main__":
                  break
             elif(choice == 2):
                  print("csv")
+                 assess_csv()
                  break
             else:
                 print("Invalid input!")
