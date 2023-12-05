@@ -4,23 +4,43 @@
  -   Python Simple Market Advisor   -
 """
 
-#returns dictionary
-def readCSV(file_name):
+import csv
+
+#returns nested dictionary
+def read_CSV():
+    dictionary500 = {}
     
+    with open("S&P500-stocks.csv") as file_read:
+        reader = csv.reader(file_read)
+        next(reader)
+        for row in reader:
+            symbol = row[0]
+            price = row[2]
+            price_earnings = row[3]
+            dictionary500[symbol] = {'price': price, 'price/earnings': price_earnings} 
+            
+    return dictionary500
     
 #returns sorted list highest to lowest
-def assessCSV():
+def assess_CSV():
+    print(read_CSV())
     
 
-#returns a stock rating out of 10
-def assess_input():
+
+#returns a stock rating out of 10 0=bad 10=good
+#def assess_input():
+    
     
     
 #return the point value of one stock out of 500 pts, 100 per cat.
-def assess_stocks()
+#def assess_stock():
 
+
+
+#main method
 if __name__ == "__main__":
     
+    #intro
     print("Hello! Welcome to our stock market advisor program. The goal of "
           "this program is to help you choose what stock to invest your "
           "money in. \n\nThere are two options, press 1 if you would like to "
@@ -34,10 +54,11 @@ if __name__ == "__main__":
         
             if(choice == 1):
                  print("input")
+                 print(assess_input())
                  break
             elif(choice == 2):
                  print("csv")
-                 assess_csv()
+                 print(assess_CSV())
                  break
             else:
                 print("Invalid input!")
