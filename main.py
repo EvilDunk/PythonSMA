@@ -43,6 +43,7 @@ def assess_CSV():
     for symbol in dictionary500.items():
         price = dictionary500[symbol]['price']
         #I left off here!!
+        #This isn't workings, says hashable error. The read_CSV() function is good
         
         
         
