@@ -17,7 +17,20 @@ def read_CSV():
             symbol = row[0]
             price = row[2]
             price_earnings = row[3]
-            dictionary500[symbol] = {'price': price, 'price/earnings': price_earnings} 
+            earnings_share = row[4]
+            high52 = row[5]
+            low52 = row[6]
+            price_sales = row[7]
+            price_book = row[8]
+            
+            dictionary500[symbol] = {'price': price,
+                                     'price_earnings': price_earnings,
+                                     'earnings_share': earnings_share,
+                                     'high52': high52,
+                                     'low52': low52,
+                                     'price_sales': price_sales,
+                                     'price_book': price_book,
+                                     } 
             
     return dictionary500
     
