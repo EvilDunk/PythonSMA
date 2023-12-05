@@ -34,9 +34,18 @@ def read_CSV():
             
     return dictionary500
     
+    
+    
 #returns sorted list highest to lowest
 def assess_CSV():
-    print(read_CSV())
+    dictionary500 = read_CSV()
+    
+    for symbol in dictionary500.items():
+        price = dictionary500[symbol]['price']
+        #I left off here!!
+        
+        
+        
     
 
 
