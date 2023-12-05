@@ -4,6 +4,12 @@
  -   Python Simple Market Advisor   -
 """
 
+#returns dictionary
+def readCSV(file_name):
+    
+
+
 
 if __name__ == "__main__":
+    
     
