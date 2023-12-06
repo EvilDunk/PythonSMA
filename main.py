@@ -5,6 +5,7 @@
 """
 
 import csv
+import math
 
 #returns nested dictionary
 def read_CSV():
@@ -23,28 +24,57 @@ def read_CSV():
             price_sales = row[7]
             price_book = row[8]
             
-            dictionary500[symbol] = {'price': price,
+            dictionary500 = {symbol: {'price': price,
                                      'price_earnings': price_earnings,
                                      'earnings_share': earnings_share,
                                      'high52': high52,
                                      'low52': low52,
                                      'price_sales': price_sales,
                                      'price_book': price_book,
-                                     } 
+                             }} 
             
     return dictionary500
     
+#return the integer point value of one stock out of 500 pts, 100 per cat.
+def assess_stock(p, pe, es, h52, l52, ps, pb):
+    price_score = 0
+    price_earn_score = 0
+    earn_share_score = 0
+    price_sale_score= 0
+    price_book_score = 0
+    
+    # Calculate a score based on how close the current price is to the stocks 52 week lowest price
+    if p > h52:
+        price_score = 0
+    elif p < l52:
+        price_score = 100
+    else:
+        price_score = math.floor((h52 - l52)/(h52 - p) * 100)
+    
+    totalscore = price_score + price_earn_score + earn_share_score + price_sale_score + price_book_score
+    return totalscore
     
     
 #returns sorted list highest to lowest
 def assess_CSV():
     dictionary500 = read_CSV()
+    dict500_with_points = []
     
-    for symbol in dictionary500.items():
+    # Compute each company score and append a
+    # (symbol, score) tuple to list dict500_with_points
+    for symbol in dictionary500.keys():
         price = dictionary500[symbol]['price']
-        #I left off here!!
-        #This isn't workings, says hashable error. The read_CSV() function is good
+        pe = dictionary500[symbol]['price_earnings']
+        es =  dictionary500[symbol]['earnings_share']
+        h52 = dictionary500[symbol]['high52']
+        l52 = dictionary500[symbol]['low52']
+        ps = dictionary500[symbol]['price_sales']
+        pb = dictionary500[symbol]['price_book']
         
+        dict500_with_points.append((symbol, assess_stock(price, pe, es, h52, l52, ps, pb)))
+        
+    dict500_with_points.sort()
+    for i in range(5):
         
         
     
@@ -55,9 +85,6 @@ def assess_CSV():
     
     
     
-#return the point value of one stock out of 500 pts, 100 per cat.
-#def assess_stock():
-
 
 
 #main method
