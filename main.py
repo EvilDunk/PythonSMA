@@ -47,8 +47,10 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
     elif p < l52:
         price_score = 100
     else:
-        price_score = math.floor((h52 - p)/(h52 - l52) * 100)
-        
+        try:
+            price_score = math.floor((h52 - p)/(h52 - l52) * 100)
+        except ZeroDivisionError:
+            price_score = 100
     # Calculate a score based on the price vs earned value over 52 weeks
     # The closer a P/E value is to 0 the better the stock
     if pe < 0:
@@ -157,7 +159,7 @@ def assess_input():
           "bad) of an investment that specific stock is.\n"
           "****************************************************************")
     while True:
-        sym = input("Enter a symbol (XXX if unknown):")
+        sym = input("Enter a symbol (XXX if unknown): ")
         if len(sym) >= 3 and len(sym) <= 5:
             break
         else:
@@ -165,21 +167,71 @@ def assess_input():
             sym = 'XXX'
             break
     while True:
-        p = input("")
+        p = input("Enter a price per stock in $0.00: $")
+        try:
+            p = float(p)
+            if p >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        pe = input("")
+        pe = input("Enter a P/E ratio as a decimal: ")
+        try:
+            pe = float(pe)
+            if pe >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        es = input("")
+        es = input("Enter a E/S ratio as a decimal: ")
+        try:
+            es = float(es)
+            if es >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        h52 = input("")
+        h52 = input("Enter the 52 week high price as a decimal: ")
+        try:
+            h52 = float(h52)
+            if h52 >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        l52 = input("")
+        l52 = input("Enter the 52 week low price as a decimal: ")
+        try:
+            l52 = float(l52)
+            if l52 >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        ps = input("")
+        ps = input("Enter the P/S ratio as a decimal: ")
+        try:
+            ps = float(ps)
+            if ps >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
     while True:
-        pb = input("")
-    
-    
+        pb = input("Enter the P/B ratio price as a decimal: ")
+        try:
+            pb = float(l52)
+            if pb >= 0.0:
+                break
+        except ValueError:
+            print("Please enter a float!")
+    print('*'*65)
+    print('Here is the information of your stock plus our rating\n'
+          'Score key >> 0-100 BAD | 100-200 POOR | 200-300 AVERAGE | 300-400 DECENT | 400-500 PRIME')
+    print('*'*65)
+    print('')
+    print(f"{'Score':<5}  || {'Symbol':<6}  |  {'Price':^5}  |  {'P/E':^5}  |  {'E/S':^5}  |  {'52 Week High':^5}  |  {'52 Week Low':^5}  |  {'P/S':^5}  |  {'P/B':>5}")
+    print('-'*100)
+    print(f"{assess_stock(p, pe, es, h52, l52, ps, pb):>5}  ||   {sym:^3}   |  {p:>6.2f} |  {pe:>5.2f}  |"
+          f"  {es:>6.2f} |     {h52:>6.2f}     |     {l52:>6.2f}    "
+          f"|  {ps:>5.2f}  |   {pb:>5.2f}")
     
 
 
@@ -201,8 +253,7 @@ if __name__ == "__main__":
             print("\n")
         
             if choice == 1:
-                 print("input")
-                 print(assess_input())
+                 assess_input()
                  break
             elif choice == 2:
                  print("****************************************************************\n"
