@@ -124,7 +124,7 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
     return totalscore
 ## I stopped here! let me know if this algorithm is working for you or not!
     
-#returns sorted list highest to lowest
+#returns top five of a sorted list highest to lowest
 def assess_CSV():
     dictionary500 = read_CSV()
     dict500_with_points = []
