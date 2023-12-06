@@ -125,21 +125,20 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
 ## I stopped here! let me know if this algorithm is working for you or not!
     
 #returns top five of a sorted list highest to lowest
-def assess_CSV():
-    dictionary500 = read_CSV()
+def assess_CSV(d500):
     dict500_with_points = []
     output_list = []
     
     # Compute each company score and append a
     # (symbol, score) tuple to list dict500_with_points
-    for symbol in dictionary500.keys():
-        price = dictionary500[symbol]['price']
-        pe = dictionary500[symbol]['price_earnings']
-        es =  dictionary500[symbol]['earnings_share']
-        h52 = dictionary500[symbol]['high52']
-        l52 = dictionary500[symbol]['low52']
-        ps = dictionary500[symbol]['price_sales']
-        pb = dictionary500[symbol]['price_book']
+    for symbol in d500.keys():
+        price = d500[symbol]['price']
+        pe = d500[symbol]['price_earnings']
+        es =  d500[symbol]['earnings_share']
+        h52 = d500[symbol]['high52']
+        l52 = d500[symbol]['low52']
+        ps = d500[symbol]['price_sales']
+        pb = d500[symbol]['price_book']
         
         dict500_with_points.append((symbol, assess_stock(price, pe, es, h52, l52, ps, pb)))
     dict500_with_points.sort(key=lambda tup: tup[1])
@@ -151,7 +150,34 @@ def assess_CSV():
 
 
 #returns a stock rating out of 10 0=bad 10=good
-#def assess_input():
+def assess_input():
+    print("****************************************************************\n"
+          "You will need to provide us with some basic information about your\n"
+          "stock. Then, we will run our algorithm to let you know how good (or\n"
+          "bad) of an investment that specific stock is.\n"
+          "****************************************************************")
+    while True:
+        sym = input("Enter a symbol (XXX if unknown):")
+        if len(sym) >= 3 and len(sym) <= 5:
+            break
+        else:
+            print("Symbol must be 3-5 characters! Using XXX")
+            sym = 'XXX'
+            break
+    while True:
+        p = input("")
+    while True:
+        pe = input("")
+    while True:
+        es = input("")
+    while True:
+        h52 = input("")
+    while True:
+        l52 = input("")
+    while True:
+        ps = input("")
+    while True:
+        pb = input("")
     
     
     
@@ -159,29 +185,43 @@ def assess_CSV():
 
 #main method
 if __name__ == "__main__":
-    
+    dictionary500 = read_CSV()
     #intro
-    print("Hello! Welcome to our stock market advisor program. The goal of "
-          "this program is to help you choose what stock to invest your "
-          "money in. \n\nThere are two options, press 1 if you would like to "
-          "provide your own stock and data, or press 2 if you would like "
-          "the program to choose 5 of the best stocks from the S&P 500.")
-    
+    print("****************************************************************\n"
+          "Hello! Welcome to our stock market advisor program. The goal of\n"
+          "this program is to help you choose what stock to invest your\n"
+          "money in. \n\nThere are two options, press 1 if you would like to \n"
+          "provide your own stock and data, or press 2 if you would like \n"
+          "the program to choose 5 of the best stocks from the S&P 500.\n"
+          "****************************************************************")
     #Input validation
     while True:
-        #try:
+        try:
             choice = int(input("Please enter 1 or 2: "))
+            print("\n")
         
             if choice == 1:
                  print("input")
                  print(assess_input())
                  break
             elif choice == 2:
-                 print("csv")
-                 print(assess_CSV())
+                 print("****************************************************************\n"
+                       "Based on the CSV data of the S&P 500, we have scored\n"
+                       "and ranked each company. The score is out of 500 where\n"
+                       "500 is a perfect investment, and 0 is a terrible investment.\n"
+                       "Here are our top five next best picks\n"
+                       "****************************************************************\n")
+                 print(f"{'Score':<5}  || {'Symbol':<6}  |  {'Price':^5}  |  {'P/E':^5}  |  {'E/S':^5}  |  {'52 Week High':^5}  |  {'52 Week Low':^5}  |  {'P/S':^5}  |  {'P/B':>5}")
+                 output = assess_CSV(dictionary500)
+                 for i in output:
+                     d = dictionary500[i[0]]
+                     print("-" * 100)
+                     print(f"{i[1]:>5}  ||   {i[0]:^3}   |  {d['price']:>6.2f} |  {d['price_earnings']:>5.2f}  |"
+                           f"  {d['earnings_share']:>6.2f} |     {d['high52']:>6.2f}     |     {d['low52']:>6.2f}    "
+                           f"|  {d['price_sales']:>5.2f}  |   {d['price_book']:>5.2f}")
                  break
             else:
                 print("Invalid input!")
                  
-       # except ValueError:
-           # print("Invalid input!")
+        except ValueError:
+            print("Invalid input!")
