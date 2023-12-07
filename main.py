@@ -244,7 +244,7 @@ def assess_input():
     #Final output table
     print('*'*65)
     print('Here is the information of your stock plus our rating\n'
-          'Score key >> 0-100 BAD | 100-200 POOR | 200-300 AVERAGE | 300-400 DECENT | 400-500 PRIME')
+          'Score key >> 0-100 BAD | 100-200 POOR | 200-300 DECENT | 300-400 GOOD | 400-500 EXCELLENT')
     print('*'*65)
     print('')
     print(f"{'Score':<5}  || {'Symbol':<6}  |  {'Price':^5}  |  {'P/E':^5}  |  {'E/S':^5}  |  {'52 Week High':^5}  |  {'52 Week Low':^5}  |  {'P/S':^5}  |  {'P/B':>5}")
@@ -266,15 +266,19 @@ if __name__ == "__main__":
           "provide your own stock and data, or press 2 if you would like \n"
           "the program to choose 5 of the best stocks from the S&P 500.\n"
           "****************************************************************")
+    
     #Input validation
     while True:
         try:
             choice = int(input("Please enter 1 or 2: "))
             print("\n")
-        
+            
+            #Input choice
             if choice == 1:
                  assess_input()
                  break
+            
+            #CSV choice
             elif choice == 2:
                  print("****************************************************************\n"
                        "Based on the CSV data of the S&P 500, we have scored\n"
