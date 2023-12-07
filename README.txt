@@ -22,4 +22,4 @@ Luke was responsible for read_CSV method(), part of assess_CSV(), and main. Dunc
 assess_stock() and assess_input(). 
 
 
-No source code used.
+No source code used. Cite for CSV: 
