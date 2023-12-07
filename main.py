@@ -125,7 +125,9 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
     totalscore = price_score + price_earn_score + earn_share_score + price_sale_score + price_book_score
     return totalscore
 ## I stopped here! let me know if this algorithm is working for you or not!
-    
+
+
+
 #returns top five of a sorted list highest to lowest
 def assess_CSV(d500):
     dict500_with_points = []
@@ -217,7 +219,7 @@ def assess_input():
     while True:
         pb = input("Enter the P/B ratio price as a decimal: ")
         try:
-            pb = float(l52)
+            pb = float(pb)
             if pb >= 0.0:
                 break
         except ValueError:
