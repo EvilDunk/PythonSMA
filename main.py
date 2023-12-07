@@ -124,8 +124,10 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
     
     totalscore = price_score + price_earn_score + earn_share_score + price_sale_score + price_book_score
     return totalscore
-## I stopped here! let me know if this algorithm is working for you or not!
-    
+
+
+
+
 #returns top five of a sorted list highest to lowest
 def assess_CSV(d500):
     dict500_with_points = []
@@ -163,6 +165,8 @@ def assess_input():
           "stock. Then, we will run our algorithm to let you know how good (or\n"
           "bad) of an investment that specific stock is.\n"
           "****************************************************************")
+    
+    #stock ticker input
     while True:
         sym = input("Enter a symbol (XXX if unknown): ")
         if len(sym) >= 3 and len(sym) <= 5:
@@ -171,6 +175,8 @@ def assess_input():
             print("Symbol must be 3-5 characters! Using XXX")
             sym = 'XXX'
             break
+    
+    #Stock price input
     while True:
         p = input("Enter a price per stock in $0.00: $")
         try:
@@ -179,6 +185,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Price/Earnings input
     while True:
         pe = input("Enter a P/E ratio as a decimal: ")
         try:
@@ -187,6 +195,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Earnings/Share input
     while True:
         es = input("Enter a E/S ratio as a decimal: ")
         try:
@@ -195,6 +205,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #52 week high input
     while True:
         h52 = input("Enter the 52 week high price as a decimal: ")
         try:
@@ -203,6 +215,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #52 week low input
     while True:
         l52 = input("Enter the 52 week low price as a decimal: ")
         try:
@@ -211,6 +225,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #Price/Sales input
     while True:
         ps = input("Enter the P/S ratio as a decimal: ")
         try:
@@ -219,17 +235,21 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #Price/Book input
     while True:
         pb = input("Enter the P/B ratio price as a decimal: ")
         try:
-            pb = float(l52)
+            pb = float(pb)
             if pb >= 0.0:
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Final output table
     print('*'*65)
     print('Here is the information of your stock plus our rating\n'
-          'Score key >> 0-100 BAD | 100-200 POOR | 200-300 AVERAGE | 300-400 DECENT | 400-500 PRIME')
+          'Score key >> 0-100 BAD | 100-200 POOR | 200-300 DECENT | 300-400 GOOD | 400-500 EXCELLENT')
     print('*'*65)
     print('')
     print(f"{'Score':<5}  || {'Symbol':<6}  |  {'Price':^5}  |  {'P/E':^5}  |  {'E/S':^5}  |  {'52 Week High':^5}  |  {'52 Week Low':^5}  |  {'P/S':^5}  |  {'P/B':>5}")
@@ -251,15 +271,19 @@ if __name__ == "__main__":
           "provide your own stock and data, or press 2 if you would like \n"
           "the program to choose 5 of the best stocks from the S&P 500.\n"
           "****************************************************************")
+    
     #Input validation
     while True:
         try:
             choice = int(input("Please enter 1 or 2: "))
             print("\n")
-        
+            
+            #Input choice
             if choice == 1:
                  assess_input()
                  break
+            
+            #CSV choice
             elif choice == 2:
                  print("****************************************************************\n"
                        "Based on the CSV data of the S&P 500, we have scored\n"
