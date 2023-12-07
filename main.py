@@ -143,7 +143,12 @@ def assess_CSV(d500):
         pb = d500[symbol]['price_book']
         
         dict500_with_points.append((symbol, assess_stock(price, pe, es, h52, l52, ps, pb)))
+    
+    # This next line is taken from 
+    # https://stackoverflow.com/questions/3121979/how-to-sort-a-list-tuple-of-lists-tuples-by-the-element-at-a-given-index
+    # Although we didnt learn this in this course, this line sorts (in place) a list of tuples by the tuple's second value
     dict500_with_points.sort(key=lambda tup: tup[1])
+    
     for i in range(5):
         output_list.append(dict500_with_points.pop())
     return output_list
