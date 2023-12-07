@@ -124,7 +124,7 @@ def assess_stock(p, pe, es, h52, l52, ps, pb):
     
     totalscore = price_score + price_earn_score + earn_share_score + price_sale_score + price_book_score
     return totalscore
-## I stopped here! let me know if this algorithm is working for you or not!
+
 
 
 
@@ -160,6 +160,8 @@ def assess_input():
           "stock. Then, we will run our algorithm to let you know how good (or\n"
           "bad) of an investment that specific stock is.\n"
           "****************************************************************")
+    
+    #stock ticker input
     while True:
         sym = input("Enter a symbol (XXX if unknown): ")
         if len(sym) >= 3 and len(sym) <= 5:
@@ -168,6 +170,8 @@ def assess_input():
             print("Symbol must be 3-5 characters! Using XXX")
             sym = 'XXX'
             break
+    
+    #Stock price input
     while True:
         p = input("Enter a price per stock in $0.00: $")
         try:
@@ -176,6 +180,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Price/Earnings input
     while True:
         pe = input("Enter a P/E ratio as a decimal: ")
         try:
@@ -184,6 +190,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Earnings/Share input
     while True:
         es = input("Enter a E/S ratio as a decimal: ")
         try:
@@ -192,6 +200,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #52 week high input
     while True:
         h52 = input("Enter the 52 week high price as a decimal: ")
         try:
@@ -200,6 +210,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #52 week low input
     while True:
         l52 = input("Enter the 52 week low price as a decimal: ")
         try:
@@ -208,6 +220,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #Price/Sales input
     while True:
         ps = input("Enter the P/S ratio as a decimal: ")
         try:
@@ -216,6 +230,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+    
+    #Price/Book input
     while True:
         pb = input("Enter the P/B ratio price as a decimal: ")
         try:
@@ -224,6 +240,8 @@ def assess_input():
                 break
         except ValueError:
             print("Please enter a float!")
+            
+    #Final output table
     print('*'*65)
     print('Here is the information of your stock plus our rating\n'
           'Score key >> 0-100 BAD | 100-200 POOR | 200-300 AVERAGE | 300-400 DECENT | 400-500 PRIME')
