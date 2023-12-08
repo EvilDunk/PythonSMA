@@ -14,6 +14,8 @@ def read_CSV():
     with open("S&P500-stocks.csv") as file_read:
         reader = csv.reader(file_read)
         next(reader)
+        
+        #go through rows and get data
         for row in reader:
             symbol = row[0]
             price = float(row[2])
@@ -23,6 +25,8 @@ def read_CSV():
             low52 = float(row[6])
             price_sales = float(row[7])
             price_book = float(row[8])
+            
+            #assign data to dictionary
             dictionary500[symbol] = {'price': price,
                                      'price_earnings': price_earnings,
                                      'earnings_share': earnings_share,
